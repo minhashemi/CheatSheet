@@ -1,0 +1,1022 @@
+%by Amin Hashemi (@minhashemi)
+%	Spring 2023
+
+\documentclass{article}
+\usepackage[landscape, a4paper]{geometry}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{pgfornament}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage{pifont}
+\usepackage{multirow}
+\usetikzlibrary{decorations.pathmorphing,shapes, arrows.meta, positioning, intersections}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=1.16}
+\usepackage{amsmath,amssymb}
+\usepackage[]{mdframed}
+
+
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\makeatletter
+
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+\title{Statistics Cheat Sheet}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+
+\advance\topmargin-.8in
+\advance\textheight3in
+\advance\textwidth3in
+\advance\oddsidemargin-1.45in
+\advance\evensidemargin-1.45in
+\parindent0pt
+\parskip2pt
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+\usepackage{fontspec}
+
+\usepackage{polyglossia}
+\setmainfont[Path=/Users/aminhashemi/Library/Fonts/]{IRANSans.ttf}
+\setdefaultlanguage{farsi}
+%\setotherlanguages{english}
+
+\newcommand{\tikzxmark}{%
+\tikz[scale=0.23] {
+    \draw[line width=0.7,line cap=round] (0,0) to [bend left=6] (1,1);
+    \draw[line width=0.7,line cap=round] (0.2,0.95) to [bend right=3] (0.8,0.05);
+}}
+
+
+\begin{document}
+
+
+\begin{multicols*}{2}
+
+
+\tikzstyle{mybox} = [draw=black, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
+
+%------------ Measures of Center ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    	\begin{RTL}
+    	  \setlength{\extrarowheight}{15pt}
+	\begin{tabular}{ r r }
+مد $(\text{mode})$		 & 	داده با بیشترین تکرار \\
+میانه $(\text{median})$	& 	داده وسطی. (برای تعداد فرد، میانگین دو داده وسط) \\
+میانگین $(\text{mean})$	 &	 $\bar{x} = \frac{\sum_{i=1}^n x_i}{n}$
+
+
+	\end{tabular}
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{معیار‌های مرکزیت داده‌ها}$};
+
+
+
+
+
+\end{tikzpicture}
+
+
+%------------ Measures of Spread ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+  
+  \begin{RTL}
+  \setlength{\extrarowheight}{15pt}
+
+	\begin{tabular}{ r r  }
+دامنه تغییرات  					& 	$R = max - min$ \\
+میانگین قدر مطلق انحراف از میانگین		 &	 $MAD = \frac{1}{n} \sum_{i=1}^n \big|x_i - \bar{x}\big|$ \\
+میانگین مربع انحراف از میانگین		& 	$MSD = \frac{1}{n} \sum_{i=1}^{n} (x_i-\bar{x})^2 = \sum_{i=1}^m (x_i - \bar{x})^2 \frac{f_i}{n}$ \\
+جذر میانگین مربع انحراف از میانگین  		&	 $RMSD = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i-\bar{x})^2}$ \\
+واریانس  						& 	$\sigma^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i-\bar{x})^2$\\
+انحراف معیار  					& 	$\sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i-\bar{x})^2}$\\
+	\end{tabular}
+	\end{RTL}
+    
+    
+    \end{minipage}
+};
+%------------ Measures of Variability Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{معیار‌های پراکندگی داده‌ها}$};
+\end{tikzpicture}
+
+%------------ Probability ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+    اصول احتمال کولموگروف: $\sum P_i = 1\qquad P\in[0,1] \quad$
+    
+    جمع احتمال: $P(A \cup B) = P(A) + P(B) - P(A \cap B) \quad $
+    
+    احتمال متمم: $P(\bar{A}) = 1 - P(A) \quad$
+    
+    استقلال:
+    \begin{itemize}
+    \item وقوع یکی از پیشامد‌ها روی دیگری تاثیر ندارد
+    \item $P(A\cap B) = P(A)P(B)$
+    \item $P(A|B)=P(A) \quad or\quad P(B|A)=P(B)$
+    \item $P(A|B)=P(A|\bar{B}) \quad or\quad P(B|A)=P(B|\bar{A})$
+    \end{itemize}
+    
+    احتمال شرطی:
+    \begin{itemize}
+    \item $P(A|B) = \frac{P(A \cap B)}{P(B)}$
+    \item $P(A \cap B) = P(B) \times P(A|B) = P(A) \times P(B|A)$
+    \end{itemize}
+    
+    قانون بیز: $P(A_i|B)= \frac{P(B|A_i)P(A_i)}{\sum_{i=1}^{n}P(A_i)P(B|A_i)} \quad$
+    \end{RTL}
+
+	
+    \end{minipage}
+};
+%------------ Probability Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{احتمال}$};
+\end{tikzpicture}
+
+
+%------------ Discrete Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+
+تابع جرمی احتمال (pmf) 	$f(x) = P(X = x)\quad $
+\end{RTL}
+$$f(x) \geq 0 \quad \forall x \in X,\qquad \sum_x f(x) = 1$$
+
+    \begin{RTL}
+    تابع توزیع جمعی (cdf)		    $F(x) = P(X \leq x) = \sum_{k \leq x}f(k)\qquad $
+    \begin{itemize}
+    \item میانگین/امید ریاضی $\mathbb{E}[X] = \sum_{x}xf(x)\quad$
+    \item واریانس $Var(X) =\sigma^2 = \sum_x (x-\mu)^2f(x) = \mathbb{E}[X^2]-\left(\mathbb{E}[X]\right)^2\quad$
+    \end{itemize}
+    
+
+\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Discrete Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{متغیر تصادفی گسسته}$};
+\end{tikzpicture}
+
+
+
+%------------ Continuous Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+    تابع چگالی احتمال (pdf) $P(a \leq X \leq b) = \int_{a}^{b} f(x) dx \quad$
+    $$f(x) \geq 0, \quad \forall x,\qquad \int^{\infty}_{-\infty} f(x) dx = 1$$
+        \end{RTL}
+
+\begin{RTL}
+تابع توزیع جمعی (cdf) $F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t) dt \qquad$
+\begin{itemize}
+\item میانگین/امید ریاضی $\mathbb{E}[X] = \int^{\infty}_{-\infty} Xf(X) dx\quad$
+\item واریانس $Var(X) =\sigma^2 =  \int^{\infty}_{-\infty} (x-\mu)^2f(x) dx = \mathbb{E}[X^2]-\left(\mathbb{E}[X]\right)^2 \quad$
+\end{itemize}
+\end{RTL}
+    \end{minipage}
+};
+%------------ Continuous Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{متغیر تصادفی پیوسته}$};
+\end{tikzpicture}
+
+
+%------------ Summarizing Main Features of f(x) ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{LTR}
+
+    \begin{itemize}
+	\setlength\itemsep{0em}
+	\item     $\mathbb{E}[aX+bY+c] = a\mathbb{E}[X] + b\mathbb{E}[Y] +c$ 
+		    \item $Var(aX+bY+c) = a^2Var(X)+b^2Var(Y)+2abCov(X,Y)$
+	    \item $Cov(X,Y) = \mathbb{E}\left[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])\right] =\mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]$
+
+	\end{itemize}
+
+\end{LTR}
+\begin{RTL}
+\underline{تابع احتمال شرطی}
+$$p(x,y) = \frac{p(x,y)}{p(y)} \qquad \mathbb{E}[X|Y=y] = \sum_x xp(x,y)$$
+
+\underline{استقلال}
+$$Pr(X=x, Y=y) = Pr(X=x).Pr(Y=y)$$
+
+\underline{کوواریانس}
+معیاری برای ارتباط دو متغیر تصادفی
+\begin{center}
+\begin{tabular}{c c c c}
+$:Cov(X,Y) > 0$ $X,Y$ هم‌راستا &&&   $:Cov(X,Y) < 0$ $X,Y$ غیرهم‌راستا
+\end{tabular}
+\end{center}
+	\end{RTL}
+\begin{center}	
+  \scalebox{0.9}{
+\begin{tikzpicture}[
+    node distance=0.5cm,
+    state/.style={rectangle, rounded corners, draw=black, minimum width=0.1cm, align=center},
+    arrow/.style={-Stealth, thick}
+]
+
+\node[state] (cov) {$\mathrm{Cov}(X,Y) = 0$};
+\node[state, below right=of cov] (exy) {$\mathbb{E}[X]\mathbb{E}[Y] = \mathbb{E}[XY]$};
+\node[state, below left=of cov] (independent) {$X,Y $ مستقل};
+
+\draw[arrow, <->] (cov) -- (exy);
+\draw[arrow] (independent) -- (cov);
+\draw[arrow] (independent) -- (exy);
+
+\end{tikzpicture}
+}
+\end{center}
+
+    \end{minipage}
+};
+%------------ Summarizing Main Features of f(x) ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{دو متغیر تصادفی}$};
+\end{tikzpicture}
+
+
+%------------ Sum and Average of Independent Random Variables ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+
+
+ جمع
+
+\begin{LTR}
+$Y = a_1X_1+a_2X_2+...+a_nX_n$
+
+$$\mathbb{E}[Y] = \sum_{i=1}^n a_i \mathbb{E}[X_i] \qquad Var(Y) = \sum_{i=1}^n a_i^2 Var(X_i)$$
+\end{LTR}
+ میانگین
+\begin{LTR}
+$\overline{X} = \frac{X_1+X_2+...+X_n}{n}$
+
+$$\mathbb{E}[\overline{X}] = \frac{1}{n}\sum_{i=1}^n \mathbb{E}[X_i]\qquad Var(\overline{X})= \frac{1}{n^2}\sum_{i=1}^n Var(X_i)$$
+
+    
+\end{LTR}
+\hrulefill
+
+        \underline{اعمال تابع}
+    
+    $$ \mathbb{E}[g(X)] = \sum_x g(x)p(x) \quad \mathbb{E}[g(X,Y)] = \sum_x g(x,y)p(x,y)$$
+    \end{RTL}
+    
+    \end{minipage}
+};
+%------------ Sum and Average of Independent Random Variables ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{جمع و میانگین متغیر تصادفی‌های مستقل}$};
+\end{tikzpicture}
+
+
+%------------ Maximum and Minimum of Independent Variables ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+\begin{RTL}
+\textit{*برای متغیر تصادفی $X_i$، cdf را با $F_{X_i}(x)$ و pdf را با $f_{X_i}(x)$ نشان می‌دهیم*}
+
+بیشینه ($V=max\{X_1, X_2, ... , X_n\}$)
+\begin{align*}
+        F_V(v)& = P(V \leq v) = P(X_1 \leq v, X_2 \leq v,..., X_n \leq v)\\
+                & = P(X_1 \leq v)P(X_2 \leq v)...P(X_n \leq v) = \prod_{i=1}^n F_{X_i}(v)\\     
+        f_V(v)&= F_V'(v) = \frac{d}{dv}F_V(v)\\
+\end{align*}
+
+کمینه ($U=min\{X_1, X_2, ... , X_n\}$)
+\begin{align*}
+        F_U(u)&= P(U \leq u) = 1-P(U>u) = 1-P(X_1>u, X_2>u,...,X_n>u)\\
+                &= 1-P(X_1>u)P(X_2>u)...P(X_n>u)\\
+                &= 1-\prod_{i=1}^n [1-F_{X_i}(u)]\\
+                f_U(u)& =\frac{d}{du} F_U(u) 
+\end{align*}
+\end{RTL}
+
+    \end{minipage}
+};
+%------------ Maximum and Minimum of Independent Variables ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{بیشینه و کمینه متغیر‌های تصادفی مستقل}$};
+\end{tikzpicture}
+
+%------------ t-student dist---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    \begin{RTL}
+فقط برای نمونه‌های با اندازه کوچک که $\sigma$ نامعلوم است استفاده می‌شود.
+
+همچنین جامعه باید نرمال باشد.
+    \end{RTL}
+
+
+    \end{minipage}
+};
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌توزیع $t-student$}$};
+\end{tikzpicture}
+
+
+
+%------------ Some Continuous Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+    توزیع یکنواخت (Uniform) : $X \sim U(a, b)$
+    \end{RTL}
+
+    \begin{tabular}{lp{8cm} l}
+    	میانگین: &$\mu = \mathbb{E}(X) = \frac{a+b}{2}$ \\
+    	واریانس: &$\sigma^2$ = $Var(X) = \frac{(b-a)^2}{12}$\\
+	\end{tabular}
+    \begin{multicols*}{2}
+        \underline{pdf}\\
+    	$f_X(x)=$ 
+    	$\begin{cases}
+    	    \frac{1}{b-a} & a \leq x \leq b\\
+            0 & \textrm{otherwise} \\
+        \end{cases}$\\
+        
+        \columnbreak
+        \underline{cdf}\\
+        $F_X(x)=$ 
+    	$\begin{cases}
+    	    0 & x < a\\
+    	    \frac{x-a}{b-a} & a \leq x \leq b\\
+            1 & x > b
+        \end{cases}$
+    \end{multicols*}
+        \begin{RTL}
+        توزیع نمایی (Exponential) : $X \sim Exp(\lambda)$
+        \end{RTL}
+
+    \begin{tabular}{lp{8cm} l}
+    	میانگین: &$\mu = E(X) = \frac{1}{\lambda}$ \\
+    	واریانس: &$\sigma^2$ = $Var(X) = \frac{1}{\lambda^2}$\\
+	\end{tabular}
+    
+    \begin{multicols*}{2}
+        \underline{pdf}\\
+    	$f_X(x)=$ 
+    	$\begin{cases}
+    	    \lambda e^{-\lambda x} & x \geq 0\\
+            0 & x < 0\\
+        \end{cases}$\\
+        
+        \columnbreak
+        \underline{cdf}\\
+        $F_X(x)=$ 
+    	$\begin{cases}
+    	    1 - e^{-\lambda x} & x \geq 0\\
+            0 & x < 0
+        \end{cases}$
+    \end{multicols*}
+    
+    \end{minipage}
+};
+%------------ Some Continuous Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{توزیع‌های پیوسته}$};
+\end{tikzpicture}
+
+
+%------------ Normal Distribution ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+    توزیع نرمال $X \sim N(\mu, \sigma^2)$
+    $$p(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\left(\frac{x-\mu}{\sigma}\right)^2\big/2}$$
+    
+    نرمال استاندارد $Z \sim N(0, 1)$ و $z = \frac{X-\mu}{\sigma}$
+    
+    $$p(z) = \frac{1}{\sqrt{2\pi}}e^{-z^2\big/2}$$
+    \end{RTL}
+
+    \begin{RTL}
+    \begin{itemize}
+    \setlength\itemsep{0em}
+    \item تقریبا $68\%$ داده‌ها در فاصله $\sigma$ میانگین اند.
+        \item تقریبا $95\%$ داده‌ها در فاصله $2\sigma$ میانگین اند.
+        \item تقریبا $99.7\%$ داده‌ها در فاصله $3\sigma$ میانگین اند.
+    \end{itemize}
+    \end{RTL}
+    
+    \end{minipage}
+};
+%------------ Normal Distribution Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌توزیع نرمال}$};
+\end{tikzpicture}
+
+
+%------------ Central Limit Theorem ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+    اگر $X_1$, $X_2$,..., $X_n$، $n$ نمونه تصادفی از یک جامعه/توزیع با میانگین $\mu$ و واریانس $\sigma^2$ باشند، برای $n$ به اندازه بزرگ ($n \geq 20$) آنگاه:
+    $$\overline{X} = \frac{X_1 + X_2 + ... + X_n}{n} \sim N(\mu, \frac{\sigma^2}{n})$$
+    این قضیه در مورد جمع نمونه‌ها نیز برقرار است:
+    $$T = X_1 + X_2 + ... + X_n = n\overline{X} \qquad T \sim N(n\mu, n\sigma^2)$$
+    \end{RTL}
+ 
+    \end{minipage}
+};
+%------------ Central Limit Theorem Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌قضیه حد مرکزی (CLT)}$};
+\end{tikzpicture}
+
+
+%------------ Bernoulli and Binomial Random Variables ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    \begin{RTL}
+    \underline{برنولی}
+    
+    فضای نمونه دو حالته.
+    \begin{LTR}
+    
+        $Pr(Success) = p, \quad Pr(Failure) = 1 - p$
+    \end{LTR}
+    توزیع برنولی:
+    \begin{LTR}
+    $X \sim Bernoulli(p)$
+    
+    pmf: $P(X=x) = p^x(1-p)^{1-x}, \quad x=0,1$
+    \end{LTR}
+    \end{RTL}
+    \begin{tabular}{lp{8cm} l}
+    	میانگین: &$\mu = \mathbb{E}[X] = p$ \\
+    	واریانس: &$\sigma^2 = Var(X) = p(1-p)$\\
+	\end{tabular}\\
+	
+\begin{RTL}
+    \underline{دوجمله‌ای}
+    
+    متغیر تصادفی دوجمله‌ای $X$، تعداد موفقیت‌ها در $n$ تلاش مستقل که همه موفقیت‌ها، احتمال برابر $p$ دارند.
+    
+    توزیع دوجمله‌ای:
+        \begin{LTR}
+        $X \sim Bin(n, p)$
+        \renewcommand{\arraystretch}{1.5}
+
+        \begin{tabular}{c l}
+        pmf& $P(X=x) = {n \choose x} p^x(1-p)^{n-x}$ \\
+        cdf& $P(X\leq x) = \sum_{i=0}^{x} {n \choose i} p^i(1-p)^{n-i}$ 
+        \end{tabular}
+            \end{LTR}
+    
+\end{RTL}
+    
+    \begin{tabular}{lp{8cm} l}
+    	میانگین: &$\mu = \mathbb{E}[X] = np$ \\
+    	واریانس: &$\sigma^2 = Var(X) = np(1-p)$\\
+	\end{tabular}
+\\ \\
+	\begin{RTL}
+	\underline{تخمین نرمال توزیع دوجمله‌ای}
+	
+	    اگر $X \sim Bin(n,p)$ و با تصحیح پیوستگی، داشته باشیم  $np \geq 5$ و $n(1-p) \geq 5$، آنگاه :
+    $$X \sim N(np, np(1-p)), approx.$$
+	\end{RTL}
+    \end{minipage}
+};
+%------------  Bernoulli and Binomial Random Variables Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌متغیر تصادفی برنولی و دوجمله‌ای}$};
+\end{tikzpicture}
+
+%------------ Continuity Correction ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+\setlength{\columnwidth}{0.4\textwidth}
+
+
+  \begin{RTL}
+  اگر $Y$ پیوسته و $X$ گسسته باشد:
+  
+  \end{RTL}
+
+
+
+\begin{minipage}{0.6\textwidth}
+\begin{itemize}
+\setlength\itemsep{0em}
+    \item $P(X > 4) = P(X \geq 5) = P(Y \geq 4.5)$
+    \item $P(X \geq 4) = P(Y \geq 3.5)$
+    \item $P(X < 4) = P(X \leq 3) = P(Y \leq 3.5)$
+    \item $P(X \leq 4) = P(Y \leq 4.5)$
+    \item $P(X = 4) = P(3.5 \leq Y \leq 4.5)$
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}[scale = 0.65]
+    \begin{axis}[
+        xlabel=\empty,
+        ylabel=\empty,
+        axis lines=middle,
+        xmin=-3, xmax=3,
+        ymin=0, ymax=0.45,
+        xtick=\empty,
+        ytick=\empty,
+        yticklabels={},
+        ticklabel style={font=\tiny},
+        enlargelimits=true,
+        clip=false
+    ]
+    \addplot [draw=none, fill=gray!20, domain=1:2, samples=200] {(1/(sqrt(2*pi)))*exp((-x^2)/2)} \closedcycle;
+    \draw[dashdotted, blue, thick] (1.5,0) node[below] {$4$} -- (1.5,{(1/(sqrt(2*pi)))*exp((-1.5^2)/2)});
+    \addplot [very thick,smooth,teal,domain=-3:3, samples=200] {(1/(sqrt(2*pi)))*exp((-x^2)/2)};
+    \draw[dashed] (1,0) -- (1,0.23);
+    \draw[dashed] (2,0) -- (2,0.06);
+    \end{axis}
+\end{tikzpicture}
+\end{minipage}%
+
+
+    \end{minipage}
+};
+%------------ Continuity Correction Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌اصلاح پیوستگی}$};
+\end{tikzpicture}
+
+%------------ Confidence Interval ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+    بازه اطمینان $(1-\alpha)\%$: 
+    \begin{itemize}
+    \item 
+ $\sigma^2$ معلوم: $\overline{x} \pm z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}$
+\item
+ $\sigma^2$ نامعلوم: $\overline{x} \pm t^\frac{\alpha}{2} _{(n-1)}\frac{s}{\sqrt{n}}$
+    \end{itemize}
+
+    \end{RTL}
+
+	
+
+    \end{minipage}
+};
+%------------ Confidence Interval Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌بازه اطمینان}$};
+\end{tikzpicture}
+
+%------------ Sampling ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+    \begin{itemize}
+\item با جاگذاری: نمونه مستقل
+
+\item بدون جاگذاری: نمونه وابسته. واریانس از \underline{با جاگذاری} کمتر است. با نمونه کمتری می‌توان $\mu$ را تخمین زد
+\item نمونه‌گیری نسبتا کوچک از جامعه بزرگ: فرقی بین با/بدون جاگذاری نیست
+\end{itemize}
+$$\mu_{\bar{X}} = \mu \qquad \sigma_{\bar{X}} = \frac{\sigma}{\sqrt{n}}$$
+\underline{بدون جاگذاری}
+
+$$Var(\bar{X}) = \frac{\sigma^2}{n} \frac{m-n}{m-1} \xrightarrow{m\to \infty} Var(\bar{X}) = \frac{\sigma^2}{n}$$
+\begin{itemize}
+\item به $(m-n)\big/(m-1)$ ضریب کاهش گویند
+\item اگر $n=1$، ضریب کاهش برابر ۱
+\item اگر $m\gg n$ می‌توان نمونه‌ها را مستقل گرفت. (فرقی بین با/بدون جاگذاری نیست)
+\end{itemize}
+
+\underline{نمونه‌گیری از جامعه برنولی}
+
+$$P = \frac{\sum X_i}{n} \qquad P\sim \mathcal{N}\left(\pi, \frac{\pi(1-\pi)}{n}\right)$$
+
+    \end{RTL}
+    \end{minipage}
+};
+%------------ Sampling Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌نمونه‌گیری}$};
+\end{tikzpicture}
+
+
+%------------ Pooled Standard Deviation ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    \begin{RTL}
+   
+    	با فرض برابری واریانس دو جامعه، تخمین‌گر واریانس جامعه $\mu_1-\mu_2$
+    	  $$s_p^2 = \frac{1}{n_1+n_2-2} \left[\sum_{i=1}^{n_1} (x_{i1}-\bar{x}_1)^2 + \sum_{i=1}^{n_2} (x_{i2}-\bar{x}_2)^2\right]$$
+    	  
+    	   بازه اطمینان برای $\mu_1-\mu_2$ :
+    
+    	$$(\overline{x}_1 - \overline{x}_2) \pm t^\frac{\alpha}{2}_{(n_1+n_2-2)}s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$$
+    	
+    	
+    	  \underline{جامعه برنولی}
+    	  
+    	  برای $n$ بزرگ:
+    	  $$\pi_1-\pi_2 = P_1 - P_2 \pm z_{\frac{\alpha}{2}} \sqrt{\frac{P_1 (1-P_1)}{n_1} + \frac{P_2 (1-P_2)}{n_2} }$$
+    \end{RTL}
+
+
+    \end{minipage}
+};
+
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌تفاضل میانگین دو جامعه}$};
+\end{tikzpicture}
+
+
+
+%------------ Point Estimators ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+    \underline{محک}
+    \begin{itemize}
+\item اوریبی 
+$$B_{\hat{\theta}}= \mathbb{E}[\hat{\theta}]- \theta$$
+اوریبی صفر، تخمین‌گر خوب
+\item کارایی 
+
+کارایی $\hat{\theta}$ نسبت به $\Hat{\Hat{\theta}}$:
+$$\frac{Var(\Hat{\Hat{\theta}})}{Var(\hat{\theta})}$$
+
+برای اوریب‌ها:
+$$\frac{\mathbb{E}[\Hat{\Hat{\theta}} -\theta]^2}{\mathbb{E}[\hat{\theta}-\theta]^2}$$
+
+تخمین‌گر کارا، بهترین تخمین‌گر
+\item سازگاری
+$$\lim_{n\to \infty} \mathbb{E}[(\hat{\theta}-\theta)^2] = 0 \iff B_{\hat{\theta}}^2 \to 0, \quad \operatorname{Var}(\hat{\theta}) \to 0$$
+
+در $n\to\infty$، سازگاری بهترین معیار و در $n$ کوچک، اوریبی.
+\end{itemize}
+\hrulefill
+
+\underline{انتخاب}
+\begin{itemize}
+\item MME
+عملی که قرار است روی جامعه انجام شود، روی نمونه انجام بده.
+\item MLE
+$$Pr(X_i=x_i; \theta) = \prod_{i=1}^n F(X_i=x_i;\theta) := L(\theta)$$
+$L(\theta)$ را بیشینه کن
+\end{itemize}
+
+
+    \end{RTL}
+    \end{minipage}
+};
+%------------ Point Estimators Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌تخمین‌گر نقطه‌ای}$};
+\end{tikzpicture}
+
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    \begin{RTL}
+   
+ \underline{سری‌های زمانی}:
+ 
+      بررسی روند تغییر یک پارامتر در طول بازه زمانی.
+      
+روش‌های تصحیح داده‌ها:
+\begin{itemize}
+\item
+ متغیر کمکی dummy با مقادیر گسسته
+\item
+ تصحیح فصلی با میانگین‌گیری. مناسب داد‌ه‌های periodic
+\end{itemize}
+
+
+ \underline{قضیه گاوس-مارکوف}:
+  در کلاس تخمین‌گر‌های خطی نااوریب برای $\alpha, \beta$، کمترین مجموع مربعات، کمترین واریانس را دارد.
+  
+    \end{RTL}
+
+
+    \end{minipage}
+};
+
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌رگرسیون$^+$}$};
+\end{tikzpicture}
+
+
+
+
+
+
+%------------ Testing of Hypotheses about mu ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+       \begin{itemize}
+    \setlength\itemsep{0em}
+        \item $H_0$ : باور عمومی. چیزی که می‌خواهیم در برابر آن بجنگیم
+        \item $H_1$ : مشاهده ما. ادعای ما. چیزی که تلاش می‌کنیم اثبات کنیم.
+    \end{itemize}
+    
+    در آزمون فرض، صرفا با مقایسه دو فرضیه، درستی یا نادرستی $H_0$ را بررسی می‌کنیم.
+    
+    \underline{انواع خطا}
+    \begin{itemize}
+    \item
+    خطای نوع اول $\alpha$ : رد $H_0$ به شرط درستی $H_0$ یا به عبارتی: 
+    $Pr( H_0 \text{\ding{55}} | H_0)$
+    
+    \item
+    خطای نوع دوم $\beta$ : پذیرفتن $H_0$ به شرط نادرستی $H_0$ یا به عبارتی:    
+        $Pr( H_0 \checkmark | H_1)$
+    \end{itemize}
+    
+$H_1$ در خطای نوع اول دخیل نیست.
+
+خطای نوع اول، علاوه بر $H_0$ به اندازه نمونه نیز بستگی دارد.
+\\ \\
+    خطای اول و دوم، رفتار الاکلنگی ($trade-off$) دارند.
+    \\ \\
+$\alpha$ خطای مهمتری از $\beta$ است. مثال قاضی
+\\ \\
+با افزایش اندازه نمونه، $\alpha$ کاهش می‌یابد.
+\\ \\
+
+\underline{تابع قدرت}:
+مقدار $1-\beta$ را قدرت تست و برای فرضیات مرکب، تابع قدرت گوییم.
+
+دوست داریم $H_1$ را بپذیریم. پس دوست داریم $\alpha$ کم و قدرت تست بالا داشته باشیم.
+\\ \\
+\underline{p-value}:
+
+کمترین احتمال خطای نوع اول که آماره آزمون موجب رد فرض صفر شود، به شرط آنکه فرض صفر صحیح باشد:
+$p-value = Pr(X>x | H_0)$
+
+\begin{center}
+\begin{tabular}{c c}
+\fbox{
+$\alpha > p-value \Rightarrow \text{ reject}H_0$
+}
+&
+\fbox{
+$H_0$ قابل پذیرش $\iff$ بازه اطمینان شامل $H_0$ باشد
+}
+\end{tabular}
+\end{center}
+بازه اطمینان، مجموعه‌ای از فرض‌های قابل قبول است.
+    \end{RTL}
+
+    \begin{multicols}{2}
+
+\begin{tikzpicture}
+\begin{axis}[
+    no markers, domain=-4:4, samples=100,
+    axis lines*=left, xlabel=\empty, ylabel=\empty,
+    height=4cm, width=8cm,
+    xtick=\empty, ytick=\empty,
+    enlargelimits=false, clip=false, axis on top,
+    grid = major,
+    scale=0.8 % added option to scale the picture to 70% of its original size
+  ]
+  \addplot [fill=blue!20, draw=none, domain=-4:-1.96] {exp(-x*x/2)/sqrt(2*pi)} \closedcycle;
+  \addplot [fill=blue!20, draw=none, domain=1.96:4] {exp(-x*x/2)/sqrt(2*pi)} \closedcycle;
+  \addplot [very thick,cyan!50!black] {exp(-x*x/2)/sqrt(2*pi)};
+  \node[below] at (axis cs:-1.96,0) {$-z_{\alpha/2}$};
+  \node[below] at (axis cs:1.96,0) {$z_{\alpha/2}$};
+  \draw[<->] (axis cs:-1.96,0.1) -- node[above] {} (axis cs:1.96,0.1);
+  \draw[dashed] (axis cs:-1.96,0) -- (axis cs:-1.96,0.25);
+  \draw[dashed] (axis cs:1.96,0) -- (axis cs:1.96,0.25);
+  \draw[->] (axis cs:-2.5,0.02) -- (axis cs:-2.7,0.1);
+  \draw[->] (axis cs:2.5,0.02) -- (axis cs:2.7,0.1);
+  \node at (axis cs:0,0.15) {{\color{green!50!black}$H_0$ \checkmark}};
+  \node at (axis cs:-2.7,0.15) {{\color{red!50!black}$H_0$ \ding{55}}};
+    \node at (axis cs:2.7,0.15) {{\color{red!50!black}$H_0$ \ding{55}}};
+\end{axis}
+\end{tikzpicture}
+
+\columnbreak
+
+\textbf{Rejection Rules:}\\
+Consider test statistic $z$, and significance value $\alpha$.
+\begin{itemize}
+\setlength\itemsep{0em}
+    \item Lower-tail test: Reject $H_o$ if $z \leq z_{\alpha}$
+    \item Upper-tail test: Reject $H_o$ if $z \geq z_{\alpha}$
+    \item Two-tail test: Reject $H_o$ if $|z| \geq z_{\frac{\alpha}{2}}$
+\end{itemize}
+
+\end{multicols}
+
+
+    \end{minipage}
+};
+%------------ Testing of Hypotheses about mu Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌آزمون فرض}$};
+\end{tikzpicture}
+
+
+%------------ ANOVA ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+ \begin{RTL}
+ برای مقایسه $r$ میانگین. مساله رگرسیون خطی با متغیر‌های تماما dummy
+ 
+
+\renewcommand{\arraystretch}{1.5} % increase vertical distance between rows
+\begin{tabular}{r c c}
+تعداد جامعه‌ها & $r$ & \\
+تعداد نمونه‌های هر جامعه & $n$ & \\
+انحراف معیار نمونه $i$-ام & $s_i^2$ &\\
+میانگین نمونه $i$-ام & $\bar{x}_i$ &	$\bar{x}_i = \frac{1}{n}\sum x_i$	\\
+میانگین $\bar{X}_i$ها & $\bar{\bar{x}}$ &	$\bar{\bar{x}} = \frac{1}{r}\sum \bar{x}_i$	\\
+واریانس $\bar{X}_i$ها & $s_{\bar{X}_i}^2$ & $s_{\bar{X}_i}^2 = \frac{1}{r-1} \sum (\bar{x}_i - \bar{\bar{x}})^2$\\
+میانگین واریانس‌ها & $s_p^2$ & $s_p^2 = \frac{1}{r}\sum^r s_i^2$
+\end{tabular}
+
+$$F = \frac{ns_{\bar{x}}^2}{s_p^2} = \frac{Explained \,\,Var}{Unexplained\,\,Var}$$
+
+
+
+
+ \textbf{فرضیات‌:}
+    \begin{itemize}
+    \setlength\itemsep{0em}
+        \item برای هر جامعه، متغیر مورد نظر، توزیع نرمال دارد.
+        \item واریانس متغیر مورد نظر، برای همه جوامع برابر $\sigma^2$ است.
+        \item مشاهدات مستقلند
+    \end{itemize}
+         \textbf{آزمون فرض:}\\
+ \end{RTL}   
+
+    $H_0: \mu_1 = \mu_2 = ... = \mu_r$\\
+    $H_1: \mu_i \neq \mu_j$ for $i \neq j$\\
+ 
+ \begin{RTL}
+ \underline{بازه اطمینان همزمان}
+ 
+ $$\sum C_i \mu_i = \sum C_i \bar{X}_i \pm \sqrt{F_{0.05}}s_p \sqrt{\frac{(r-1)(\sum C_i^2)}{n}}, \qquad \sum C_i = 0$$
+ \end{RTL}
+
+
+	\textbf{The ANOVA Table:}
+	\begin{center}
+    \begin{tabular}{c|c|c|c|c}
+        Source of Variation & df & Squares of Sum   & Square Mean  & F-ratio \\
+        \hline
+        Explained & $r-1$ & SSr & MSSr = $\frac{\textrm{SSr}}{r-1}$ & $\frac{\textrm{MSSr}}{\textrm{MSSu}}$ \\
+        Unexplained & $r(n-1)$ & SSu & MSSu = $\frac{\textrm{SSu}}{r(n-1)}$ &  \\
+        Total & $nr-1$ & SST &  &  \\
+    \end{tabular}
+    \end{center}
+
+    
+    \textbf{Test Statistic:}\\
+    \begin{tabular}{lp{8cm} l}
+    	$F_{obs} = \frac{\textrm{MSSr}}{\textrm{MSSu}} \sim F_{v_1, v_2}$ &  $v_1 = df(\textrm{SSr}) = r-1$\\
+    	& $v_2 = df(\textrm{SSu}) = r(n-1)$\\
+    		\end{tabular}\\
+    	\begin{RTL}
+    	
+    	اگر $F_{obs} \geq F_{\alpha, v_1, v_2}$ آنگاه $H_0$ رد می‌شود.
+    	
+
+\end{RTL}
+    	\begin{center}   \fbox{
+reject $H_0 \iff F > 1$  
+}
+\end{center}
+    
+        	\begin{RTL}
+        	اگر $F$ نزدیک ۱ باشد، $H_0$ را می‌پذیریم.
+        	\end{RTL}
+    \end{minipage}
+};
+%------------ ANOVA Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌ANOVA}$};
+\end{tikzpicture}
+
+
+%------------ Simple Linear Regression ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+    \underline{کمترین مجموع مربعات}:
+    $$\underset{\alpha, \beta}{\mathrm{argmin}} \sum_{i=1}^n \left(y_i - (bx_i + a)\right)^2 \Rightarrow 
+    a = \overline{Y} \qquad b = \frac{\sum Y_i x_i}{\sum x_i^2}$$
+    
+ \underline{مدلسازی}:
+ $$Y_i = \alpha + \beta x_i + \varepsilon_i \sim \hat{Y}_i = a + b x_i \quad d.f=n-2$$
+ \begin{LTR}
+ \begin{center}
+ \begin{tabular}{r c |r c| r c | r c}
+ $\mathbb{E}[Y_i]$	&	$\alpha + \beta x_i$ 	&	 $\mathbb{E}[\varepsilon_i]$ 	&	$0$  	&	 $\mathbb{E}[a]$	&	$\alpha $  	& 	 $\mathbb{E}[b]$	&	$ \beta$ \\
+ $\mathrm{Var}(Y_i)$	&	$\sigma^2$		&	 $\mathrm{Var}(\varepsilon_i)$		&	$\sigma^2$	& 	$\mathrm{Var}(a)$		&	$\frac{\sigma^2}{n}$ 	&	$\mathrm{Var}(b)$		&	$\frac{\sigma^2}{\sum x_i^2}$
+ \end{tabular}
+ \end{center}
+ \end{LTR}
+ 
+ $Y_i$ها متغیر‌تصادفی مستقلند
+
+  \underline{بازه اطمینان}:
+  
+  $$\beta = b \pm t_{0.025}^{(n-2)}\frac{s}{\sqrt{\sum x_i^2}} \qquad 
+  \alpha = a \pm t_{0.025}^{(n-2)}\frac{s}{\sqrt{n}} $$
+ 
+ بازه اطمینان پیش‌بینی:
+ $$Y_0 = \hat{Y}_0 \pm t_{0.025}^{(n-2)} s \sqrt{\frac{1}{n} + \frac{x_0^2}{\sum_{i=1}^n x_i^2}+1}$$
+ 
+  
+
+    \end{RTL}
+
+    \end{minipage}
+};
+%------------ Simple Linear Regression Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌رگرسیون خطی ساده}$};
+\end{tikzpicture}
+
+
+%------------ Simple Linear Regression ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    \begin{RTL}
+
+ \underline{مدلسازی}:
+ $$Y_i = \alpha + \beta x_i +\gamma z_i +\varepsilon_i \sim \hat{Y}_i = a + b x_i + c z_i \quad d.f=n-3$$
+
+    \underline{کمترین مجموع مربعات}:
+    $$\underset{\alpha, \beta, \gamma}{\mathrm{argmin}} \sum_{i=1}^n \left(y_i - (a+bx_i + cz_i)\right)^2 \Rightarrow 
+    a = \overline{Y} \qquad \begin{cases} \sum Y_i x_i = b \sum x_i^2 + c \sum x_i z_i \\ \sum Y_i z_i = b \sum x_i z_i + c \sum z_i^2 \end{cases}$$
+    
+     \underline{همخطی چند‌گانه (multicollinearity)}:
+     یک بعد را از دست می‌دهیم! وقتی یکی از پارامتر‌ها ضریب دیگری باشد یا ارتباط خطی داشته باشند اتفاق می‌افتد.
+
+
+\begin{itemize}
+\item رگرسیون استاندارد: رگرسیون با متغیر‌های عددی
+\item ANOVA : رگرسیون با متغیر‌های dummy
+\item ANOCOVA : رگرسیون استاندارد + ANOVA
+\end{itemize}
+    \end{RTL}
+
+
+    \end{minipage}
+};
+%------------ Simple Linear Regression Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌رگرسیون  چندگانه}$};
+\end{tikzpicture}
+
+
+
+\begin{flushleft}
+\begin{tabular}{c  c}
+ \textbf{آمــار و کــاربرد آن} & بهار ۱۴۰۲ \\
+ دکتر جواد ابراهیمی &  \raisebox{-.5\height}{\includegraphics[scale=0.1]{amin handwritten.ai}}
+\end{tabular}
+
+\end{flushleft}
+
+
+
+%\vfill\null
+%\columnbreak
+\end{multicols*}
+\end{document}
