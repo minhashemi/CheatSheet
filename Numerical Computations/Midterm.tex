@@ -1,0 +1,587 @@
+%by Amin Hashemi (@minhashemi)
+%	Spring 2023
+
+\documentclass{article}
+\usepackage[landscape, a4paper]{geometry}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{multirow}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{amsmath,amssymb}
+
+
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\makeatletter
+
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+\title{Statistics Cheat Sheet}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+
+\advance\topmargin-.8in
+\advance\textheight3in
+\advance\textwidth3in
+\advance\oddsidemargin-1.45in
+\advance\evensidemargin-1.45in
+\parindent0pt
+\parskip2pt
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+\usepackage{fontspec}
+
+\usepackage{polyglossia}
+\setmainfont[Path=/Users/aminhashemi/Library/Fonts/]{IRANSans.ttf}
+\setdefaultlanguage{farsi}
+%\setotherlanguages{english}
+
+
+\begin{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{multicols*}{2}
+
+\tikzstyle{mybox} = [draw=black, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
+
+%------------ Measures of Center ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+    
+    	\begin{RTL}
+    	  \setlength{\extrarowheight}{15pt}
+	\begin{tabular}{ r r r }
+مطلق 	& $e(a) = |A-a|$ &  یکتا \\
+حدی		& $e_a \geq e(a)$&  غیر یکتا | تساوی: $e(a)$ رند\\	
+نسبی		& $\delta(a) = \frac{|A-a|}{|A|} = \frac{e(a)}{|A|}$ 	& خطای نسبی $\downarrow$ اندازه‌گیری دقیق‌تر
+
+	\end{tabular}
+	
+	- خطای مطلق حدی در گرد کردن تا $n$ رقم اعشار $\frac{1}{2} \times 10^{-n}$
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{انواع خطا}$};
+\end{tikzpicture}
+
+
+%------------ Measures of Spread ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+  
+  \begin{RTL}
+  \setlength{\extrarowheight}{15pt}
+
+	\begin{tabular}{ r r  }
+	
+خطای مدلساز			&	 صرف نظر کردن از مقاومت هوا \\
+خطای داده (اندازه‌گیری)		&	 خطای وسیله یا آزمایشگر \\
+خطای باقی‌مانده (برشی)		&	 عملیات‌های نامتناهی - بسط $e^x$\\
+خطای نمایش (گرد کردن)	&	 $1.414654 \to 1.415$ \\
+خطای عملیات ریاضی		&	 جمع و ضرب دو عدد خطادار در هم 
+	\end{tabular}
+	\end{RTL}
+    
+    
+    \end{minipage}
+};
+%------------ Measures of Variability Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{منابع خطا}$};
+\end{tikzpicture}
+
+
+%------------ Discrete Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+      \begin{RTL}
+  \setlength{\extrarowheight}{15pt}
+
+	\begin{tabular}{ r r  }
+	
+جمع و تفریق		&	 $e_c \leq e_a + e_b$ \\
+ضرب دو عدد		&	$e_c \leq b.e_a + a.e_b$ \\
+ضرب سه عدد		&	 $e_d \leq \sum_{cyc} ab.e_c$\\
+
+	\end{tabular}
+	\end{RTL}
+    
+	
+	
+    \end{minipage}
+};
+%------------ Discrete Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{خطای عملیات ریاضی}$};
+\end{tikzpicture}
+
+%------------ Discrete Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+      \begin{RTL}
+  \setlength{\extrarowheight}{15pt}
+خطای $f(x_1, x_2, \dots, x_n)$ در نقطه $A_i = a_i +e_{a_i}$:
+$$e_f \leq \sum_{i=1}^{n} e_{a_i}\frac{\partial f}{\partial x_i} \bigg|_a$$
+
+
+
+    
+	خطای بسط تیلور:
+	
+	$$e^x = 1 + x +\frac{x^2}{2!} +\dots + \frac{x^n}{n!} + E_n(x) $$ $$
+E_n(x) = \frac{x^{n+1}}{(n+1)!}$$
+\end{RTL}
+    \end{minipage}
+};
+%------------ Discrete Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{خطای تابع}$};
+\end{tikzpicture}
+
+
+%------------ Sets and Probability ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.427\textwidth}
+    
+
+
+		$$e^{x}=1+x+\frac{x^{2}}{2!}+...+\frac{x^{n}}{n!}+... $$
+		$$\ln(1+x) =x - \frac{x^{2}}{2} + \frac{x^{3}}{3} + ... + (-1)^{n+1}\frac{x^{n}}{n!} +... $$
+		$$\cos(x)= \frac{e^{ix}+e^{-ix}}{2}=1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}-\frac{x^{6}}{6!}+...$$
+		$$\sin(x)= \frac{e^{ix}-e^{-ix}}{2i}=x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!}+...$$
+
+
+    \end{minipage}
+};
+%------------ Sets and Probability Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{Series Taylor}$};
+\end{tikzpicture}
+
+
+%------------ Measures of Center ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+    	\begin{itemize}
+
+   \item  سه‌گانه پیوستگی:
+    	
+    - تابع در بازه مورد نظر، پیوسته باشد
+    
+- باید $f(a),\, f(b)$ مختلف العلامت باشند
+
+- در این بازه $f'(x)\neq0$ (زیرا ریشه ساده می‌خواهیم) 
+
+\item شرط توقف:
+
+- اگر  $|f(x_n)| < e$ 
+
+- اگر  $|x_{n+1} - x_n| < e $
+
+- اگر تعداد تکرار ما از عددی بزرگتر شود. $n>m $
+
+\item سه‌گانه علامت:
+\begin{LTR}
+- $f(a)f(x) < 0 \Rightarrow \alpha \in (a,x)$
+
+- $f(a)f(x) > 0 \Rightarrow \alpha \in (x,b)$
+
+- $f(a)f(x) = 0 \Rightarrow \alpha =x $
+\end{LTR}
+    	 \end{itemize}
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{شرط معادله}$};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+    	\begin{itemize}
+\item سه‌گانه پیوستگی 
+
+\item  $x_n= \frac{a+b}{2}$
+
+\item سه‌گانه علامت
+
+\item همگرایی تضمین شده
+
+    	 \end{itemize}
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{تنصیف}$};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+    	\begin{itemize}
+\item سه‌گانه پیوستگی
+
+\item $ x=\frac{af(b)-bf(a)}{f(b)-f(a)}$
+
+\item سه‌گانه علامت 
+
+\item  همگرایی تضمین شده
+
+    	 \end{itemize}
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{نابجایی}$};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+    	\begin{itemize}
+\item سه‌گانه پیوستگی 
+
+\item $ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$
+
+\item همگرایی تضمین نشده. ولی اگر همگرا باشه، سرعتش بالاست
+
+    	 \end{itemize}
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{نیوتن-رفسون}$};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+    	\begin{itemize}
+\item سه‌گانه پیوستگی 
+
+\item $x_{n+1} = x_n - \frac{f(x_n)(x_n - x_{n-1})}{f(x_n)-f(x_{n-1})}$
+
+\item همگرایی تضمین نشده. ولی اگر همگرا باشه، سرعتش بیشتر از نابجاییِ 
+
+    	 \end{itemize}
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{وتری}$};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+    	\begin{itemize}
+\item سه‌گانه پیوستگی 
+\item شروط کافی همگرایی
+
+$$\forall x\in [a,b] \Rightarrow g(x)\in[a,b]$$
+
+$$\forall x \in [a,b] \Rightarrow |g'(x)| < 1$$
+
+\item $x_{n+1} = g(x_n)$
+
+
+    	 \end{itemize}
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{تکرار ساده}$};
+\end{tikzpicture}
+
+%------------ Discrete Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+      \begin{RTL}
+  \setlength{\extrarowheight}{15pt}
+  - حل مساله در $[a,b]$ با $n$ گام: $ h = (b-a)\big/ n $
+
+$$y_{n+1} = y_n + hf(x_n,y_n) + \frac{h^2}{2!}f'(x_n,y_n)+\frac{h^3}{3!}f''(x_n,y_n)+\dots + \frac{h^k}{k!}f^{(k-1)}(x_n,y_n)$$
+
+	\end{RTL}
+    
+	
+	
+    \end{minipage}
+};
+%------------ Discrete Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{تیلور مرتبه $k$}$};
+\end{tikzpicture}
+
+%------------ Discrete Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+      \begin{RTL}
+  \setlength{\extrarowheight}{15pt}
+تیلور مرتبه ۱
+
+$$y_{n+1} = y_n + hf(x_n,y_n)$$
+
+	\end{RTL}
+    
+	
+	
+    \end{minipage}
+};
+%------------ Discrete Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{اویلر}$};
+\end{tikzpicture}
+
+%------------ Discrete Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+      \begin{RTL}
+  \setlength{\extrarowheight}{15pt}
+
+
+\begin{itemize}
+\item مرتبه ۲
+
+-$ h  =cte. , x_n = x_0 + nh $
+
+$$\begin{cases}
+k_1 = hf(x_n,y_n) \\
+k_2 = hf(x_n+h, y_n+k_1) \\
+\end{cases}
+y_{n+1} = y_n + \frac{1}{2} (k_1+k_2)$$
+
+\item 
+مرتبه ۴
+- $h = cte, y' = f(x,y), y(x_0) = y_0$
+
+$$ 
+\begin{cases} 
+k_1 = hf(x_n,y_n) \\
+k_2 = hf(x_n+\frac{h}{2}, y_n+\frac{k_1}{2}) \\
+k_3 = hf(x_n+\frac{h}{2}, y_n+\frac{k_2}{2}) \\
+k_4 = hf(x_n+h, y_n+k_3)
+\end{cases}
+y_{n+1} = y_n + \frac{1}{6} (k_1 + 2k_2 + 2k_3 + k_4)$$
+\end{itemize}
+
+	\end{RTL}
+    
+	
+	
+    \end{minipage}
+};
+%------------ Discrete Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{رونگه-کوتا}$};
+\end{tikzpicture}
+
+%------------ Discrete Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+
+  \setlength{\extrarowheight}{15pt}
+
+$y' = f_1(x,y,p) , p' = f_2(x,y,p)$ with  initial condition $y(x_0) = y_0 , p(x_0) = p_0$:
+
+
+$$k_1 = hf_1(x_n,y_n,p_n) \qquad l_1 = hf_2(x_n,y_n,p_n) $$
+$$k_2 = hf_1(x_n+\frac{1}{2} h, y_n + \frac{1}{2} k_1 , p_n+ \frac{1}{2} l_1) \qquad l_2 = hf_2(x_n+\frac{1}{2} h, y_n + \frac{1}{2} k_1 , p_n+ \frac{1}{2} l_1)$$
+$$k_3 = hf_1(x_n+\frac{1}{2} h, y_n + \frac{1}{2} k_2 , p_n+ \frac{1}{2} l_2) \qquad l_3 = hf_2(x_n+\frac{1}{2} h, y_n + \frac{1}{2} k_2 , p_n+ \frac{1}{2} l_2)$$
+$$k_4 = hf_1(x_n + h,y_n + k_3,p_n+ l_3) \qquad l_4 = hf_2(x_n + h,y_n + k_3,p_n+ l_3) $$
+
+
+$$y_{n+1} = y_n + \frac{1}{6}(K_1+2k_2+2k_3+k_4) \qquad
+p_{n+1} = p_n + \frac{1}{6}(l_1+2l_2+2l_3+l_4)$$
+
+	
+	
+    \end{minipage}
+};
+%------------ Discrete Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt] at (box.north east) {$\text{دستگاه}$};
+\end{tikzpicture}
+
+
+\begin{flushleft}
+\begin{tabular}{c  c}
+ \textbf{محاسبات عـــددی} & بهار ۱۴۰۲ \\
+ دکتر کیوان محمدی &  \raisebox{-.5\height}{\includegraphics[scale=0.1]{amin handwritten.ai}}
+\end{tabular}
+
+\end{flushleft}
+
+
+
+\end{multicols*}
+\end{document}

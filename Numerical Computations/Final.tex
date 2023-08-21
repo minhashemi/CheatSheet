@@ -1,0 +1,808 @@
+%by Amin Hashemi (@minhashemi)
+%	Spring 2023
+
+\documentclass{article}
+\usepackage[landscape, a4paper]{geometry}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{multirow}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{amsmath,amssymb}
+\usepackage{tabularx} % for adjusting column widths
+\usepackage{booktabs}
+\usepackage[makeroom]{cancel}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\makeatletter
+
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+\title{Statistics Cheat Sheet}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+
+\advance\topmargin-.8in
+\advance\textheight3in
+\advance\textwidth3in
+\advance\oddsidemargin-1.45in
+\advance\evensidemargin-1.45in
+\parindent0pt
+\parskip2pt
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+\usepackage{fontspec}
+
+\usepackage{polyglossia}
+\setmainfont[Path=/Users/aminhashemi/Library/Fonts/]{IRANSans.ttf}
+\setdefaultlanguage{farsi}
+%\setotherlanguages{english}
+
+
+\begin{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{multicols*}{2}
+
+\tikzstyle{mybox} = [draw=black, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
+
+
+
+
+
+%------------ Measures of Spread ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+  
+ \begin{RTL}
+اگر $L_i(x)$ چندجمله‌ای درجه $n$ باشد، چند‌جمله‌ای درونیاب برابر است با: (درجه $P(x) $ بعد از محاسبات معلوم می‌شود)
+$$P(x) = \sum_{i=o}^n L_i(x)f_i$$
+که
+$$L_j(x) = \frac{(x-x_0)(x-x_1)\cdots{\color{blue} (x-x_{j-1})(x-x_{j+1})}\cdots (x-x_n)}{(x_j-x_0)(x_j-x_1)\cdots{\color{blue} (x_j-x_{j-1})(x_j-x_{j+1})}\cdots (x_j-x_n)}$$
+
+\end{RTL}
+    
+    
+    \end{minipage}
+};
+%------------ Measures of Variability Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌درونیابی لاگرانژ}$};
+\end{tikzpicture}
+
+
+%------------ Discrete Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+  \begin{RTL}
+  \def\arraystretch{1.5}%  1 is the default, change whatever you need
+  \begin{tabular}{ l r}
+مرتبه اول:
+&
+$f[x_i, x_{i+1}] = \frac{f_i - f_{i+1}}{x_i - x_{i+1}}$
+\\
+مرتبه دوم:
+&
+$f[x_i, x_{i+1},x_{i+2}] = \frac{f[x_i, x_{i+1}]  - f[x_{i+1}, x_{i+2}] }{x_i - x_{i+2}} $
+\end{tabular}
+
+چندجمله‌ای درونیاب:
+
+\begin{align*}
+P(x) = f_0 + (x-x_0)f[x_0,x_1] &+ (x-x_0)(x-x_1)f[x_0,x_1,x_2] + \cdots  \\&+ (x-x_0)(x-x_1)\cdots(x-x_{n-1})f[x_0,x_1,\dots, x_n]
+\end{align*}
+
+
+\end{RTL}
+    
+    \[
+\begin{array}{c|cccc}
+x_i & f[x_i] & f[x_i,x_{i+1}] & f[x_i,x_{i+1},x_{i+2}] & \cdots \\
+\hline
+x_0 & f[x_0] \\
+x_1 &  \color{gray}f[x_1] & f[x_0,x_1] \\
+x_2 &  \color{gray}f[x_2] &  \color{gray}f[x_1,x_2] & f[x_0,x_1,x_2] \\
+\vdots & \vdots & \vdots & \vdots & \ddots \\
+x_n &  \color{gray}f[x_n] &  \color{gray}f[x_{n-1},x_n] &  \color{gray}f[x_{n-2},x_{n-1},x_n] & \cdots f[x_0,x_1,\ldots,x_n]
+\end{array}
+\]
+
+    \end{minipage}
+};
+%------------ Discrete Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌درونیابی تفاضلات تقسیم شده نیوتن}$};
+\end{tikzpicture}
+
+
+%--------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+
+
+    	\begin{RTL}
+در دستگاه غیر خطی $[f(x,y) = 0 , g(x,y) = 0]$،  $(x_i,y_i)$ تخمین جوابِ  طوری که:
+$$
+x_{n+1} = x_n + h_n \qquad
+y_{n+1} = y_n + k_n $$
+با فرض معلوم بودن $x_n, y_n$:
+$$\begin{cases}
+h_n \frac{\partial f}{\partial x} \big|_{(x_n,y_n)} + k_n \frac{\partial f}{\partial y} \big|_{(x_n,y_n)} = -f(x_n,y_n) \\
+h_n \frac{\partial g}{\partial x} \big|_{(x_n,y_n)} + k_n \frac{\partial g}{\partial y} \big|_{(x_n,y_n)} = -g(x_n,y_n)
+\end{cases}$$
+در این صورت:
+
+
+
+\begin{center}
+\begin{tabular}{c c c}
+$h_n = \frac{\begin{vmatrix}
+-f & f_y\\
+-g & g_y
+\end{vmatrix}}{\begin{vmatrix}
+f_x & f_y\\
+g_x & g_y
+\end{vmatrix}}$
+& $k_n = \frac{\begin{vmatrix}
+f_x & -f\\
+g_x & -g
+\end{vmatrix}}{\begin{vmatrix}
+f_x & f_y\\
+g_x & g_y
+\end{vmatrix}}$
+&
+{\color{gray!80}حواست باشه مخرج صفر نشه}
+\end{tabular}
+\end{center}
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{دستگاه معادلات غیر خطی}$};
+\end{tikzpicture}
+
+
+%--------------
+
+%------------ Discrete Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+      \begin{RTL}
+مخصوص درونیابی نقاط با فاصله مساوی
+
+تغییر متغیر:
+$$f(x) = f(x_0+sh) = f_s$$
+\underline{تفاضل پیشرو}
+\begin{align*}
+\Delta^i f_s = \begin{cases}
+f_s & i=0 \\
+\Delta^{i-1} f_{s+1} - \Delta^{i-1} f_{s} & i>0
+\end{cases}
+\end{align*}
+چندجمله‌ای درونیاب
+$$P(x) = f_0 + {s\choose 1}\Delta f_0 + {s\choose 2}\Delta^2 f_0 + \cdots + {s\choose n}\Delta^n f_0$$
+جاگذاری $ s= (x-x_0)\big/h$ و محاسبه تابع بر حسب $x$.
+\end{RTL}
+
+    \[
+\begin{array}{c|ccccc}
+x_i & f_i& \Delta& \Delta^2 & \Delta^3 & \cdots \\
+\hline
+x_0 & f_0 \\
+x_1 &  \color{gray}f_1 & \Delta f_0 \\
+x_2 &  \color{gray}f_2 & \color{gray} \Delta f_1 & \Delta^2 f_0\\
+x_3 &  \color{gray}f_3 &  \color{gray}\Delta f_2 &  \color{gray}\Delta^2 f_1 & \Delta^3 f_0 \\
+\end{array}
+\]
+
+    \end{minipage}
+};
+%------------ Discrete Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌تفاضل پیشرو}$};
+\end{tikzpicture}
+
+
+%------------ Discrete Random Variable and Distributions ---------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.43\textwidth}
+      \begin{RTL}
+مخصوص برای $x$ نزدیک به نقاط انتهایی جدول.
+
+تغییر متغیر:
+$$f(x) = f(x_n+sh) = f_s$$
+\underline{تفاضل پسرو}
+\begin{align*}
+\nabla^i f_s = \begin{cases}
+f_s & i=0 \\
+\nabla^{i-1} f_{s} - \nabla^{i-1} f_{s-1} & i>0
+\end{cases}
+\end{align*}
+چندجمله‌ای درونیاب
+\begin{align*}
+P(x) = f_n +s\nabla f_n + \frac{s(s+1)}{2!}\nabla^2 f_n &+\cdots \\
+&+\frac{s(s+1)(s+2)\cdots (s+n-1)}{n!}\nabla^n f_n
+\end{align*}
+
+جاگذاری $ s= (x-x_0)\big/h$ و محاسبه تابع بر حسب $x$.
+\end{RTL}
+
+    \[
+\begin{array}{c|ccccc}
+x_i & f_i& \Delta& \Delta^2 & \Delta^3 & \cdots \\
+\hline
+x_0 & \color{gray}f_0 & \color{gray}\nabla f_1 &\color{gray} \nabla^2 f_2 & \nabla^3 f_3\\
+x_1 & \color{gray}f_1& \color{gray}\nabla f_2 & \nabla^2 f_3 \\
+x_2 & \color{gray}f_2&  \nabla f_3  \\
+x_3 &  f_3  \\
+\end{array}
+\]
+
+    \end{minipage}
+};
+%------------ Discrete Random Variable and Distributions Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌تفاضل پسرو}$};
+\end{tikzpicture}
+
+
+
+
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+تابع درونیاب را پیدا می‌کنیم و مشتق می‌گیریم.
+
+\def\arraystretch{1.5}%  1 is the default, change whatever you need
+\begin{tabular}{l l  r}
+$f'_i = \frac{1}{h} \Delta f_i$&$f_i' = \frac{f_{i+1}-f_i}{h}$ & مشتق مرتبه اول با یک جمله  \\
+$f'_i = \frac{1}{h}[\Delta f_i - \frac{1}{2}\Delta^2 f_i]$&$f_i' = \frac{2f_{i+1} - \frac{1}{2} f_{i+2} - \frac{3}{2} f_i}{h}$ & مشتق مرتبه اول با دو جمله \\
+$f''_i = \frac{1}{h^2} \Delta^2 f_i$&$f_i'' = \frac{f_{i+2}-2f_{i+1}+f_i}{h^2}$ & مشتق مرتبه دوم با دو جمله
+\end{tabular}
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌مشتق‌گیری عددی تابع درونیاب}$};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+بسط تیلور $f(x_{i+1})$ و $f(x_{i-1})$ را می‌نویسیم:
+
+\def\arraystretch{1.5}%  1 is the default, change whatever you need
+\begin{tabular}{l  r}
+$f'(x_i) = \frac{f_{i+1}-f_i}{h}$ & مشتق مرتبه اول با دو جمله  در $f'(x_0)$ \\
+$f'(x_i) = \frac{f_{i}-f_{i-1}}{h}$  & مشتق مرتبه اول با دو جمله در $f'(x_n)$ \\
+$f'(x_i) = \frac{f_{i+1}-f_{i-1}}{2h}$ & در حالت کلی \\
+$f''(x_i) = \frac{f_{i-1} - 2f_i + f_{i+1}}{h^2}$ & مشتق مرتبه دوم \\
+$f'''(x_i) = \frac{f_{i+2} - 2f_{i+1}+2f_{i-1}-f_{i-2}}{2h^3}$ & مشتق مرتبه سوم
+\end{tabular}
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌مشتق‌گیری بسط تیلور}$};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+    	بین زیر‌بازه‌ها، تابع خطی رد کن
+\begin{align*}
+\int_{x_i}^{x_{i+1}} f(x) dx = \frac{h}{2} (f_i + f_{i+1}) \\
+\Rightarrow T(h) = \int_a^b f(x) dx &= \frac{h}{2} [f_0 + 2f_1 + \cdots + 2f_{n-1} + f_n] \\
+&= A_0 f_0 + A_1f_1 + \cdots + A_nf_n + E, \quad A_i = A_{i+1} = \frac{h}{2}
+\end{align*}
+
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌انتگرال ذوزنقه‌ای}$};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+    	بین زیر‌بازه‌ها تابع درجه ۲ رد کن. (تعداد نقاط باید فرد باشد.)
+\begin{align*}
+\int_{x_i}^{x_{i+2}} f(x) dx &= \frac{h}{3} (f_i + 4f_{i+1} + f_{i+2}) \\
+\Rightarrow S(h) = \int_{x_0}^{x_n} f(x) dx &= \frac{h}{3} [f_0 + 4f_1 + 2f_2 + 4f_3 + 2f_4 +  \cdots + 4f_{n-1} + f_n] \\
+&= A_0 f_0 + A_1f_1 + \cdots + A_nf_n + E
+\end{align*}
+
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌انتگرال سیمپسون}$};
+\end{tikzpicture}
+
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+
+برای توابع تکین (تعریف نشده در ابتدا یا انتها).
+$\int_{x_i}^{x_{i+1}} f(x) dx = hf\left(x_i + \frac{h}{2}\right) $
+
+\begin{align*}
+M(h) = \int_{x_0}^{x_n} f(x) dx =   h\left[f\left(x_0 + \frac{h}{2}\right) +\cdots + f\left(x_i + \frac{h}{2}\right)+ \cdots+ f\left(x_{n-1} + \frac{h}{2}\right)\right]
+\end{align*}
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌انتگرال نقطه میانی}$};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+$x_i$ها معلوم
+
+برای $f(x) = 1, x, x^2, \cdots$، خطای سیمپسون $0=$
+
+$A_i$ها را تعیین می‌کنیم.
+    	
+    	در این روش، تعداد نقاط باید \underline{فرد} باشد.
+
+
+\underline{نیوتن-کاتس ۴ نقطه‌ای}
+\begin{align*}
+\int_0^{3h} f(x) dx = \frac{3h}{8} [f_0+3f_1+3f_2+f_3]
+\end{align*}
+
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌انتگرال نیوتن-کاتس(ضرایب مجهول)}$};
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+در سیمپسون:
+\begin{itemize}
+\item  $A_i, x_i$ مجهول
+\item خطا $0=$
+\end{itemize}
+
+فرمول‌ها برای $[-1,1]$ بدست می‌آید.
+
+نقاط زیر‌بازه لزوما متساوی الفاصله نیستند.
+
+\begin{align*}
+\begin{cases}
+x \in [a,b] \\
+u \in [-1,1]
+\end{cases}
+\to x = \frac{1}{2} [(b-a)u + (b+a)] \Rightarrow  \int_a^b g(u) \, du = \frac{b-a}{2}\int_{-1}^1 f(x)\,dx
+\end{align*}
+
+\underline{گاوس ۲ نقطه‌ای}
+
+$$\int_{-1}^1 f(x) \, dx = f\left(\frac{-\sqrt{3}}{3}\right) + f\left(\frac{\sqrt{3}}{3}\right)$$
+
+
+\underline{گاوس ۳ نقطه‌ای}
+
+$$\int_{-1}^1 f(x) \, dx = \frac{1}{9}\left[5f\left(-\sqrt{\frac{3}{5}}\right) + 8f(0) + 5f\left(\sqrt{\frac{3}{5}}\right) \right]$$
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌‌انتگرال گاوس}$};
+\end{tikzpicture}
+
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+
+ رگرسیون خطی :)
+\begin{align*}
+\underset{a_0, a_1, \cdots}{\mathrm{argmin}}  \sum_{i=1}^n (y_i - \bar{y})^2 = \sum_{i=1}^n \left(y_i - (a_0 + a_1x + \cdots)\right)^2 = s \Rightarrow \begin{cases} \frac{\partial s}{\partial a_0}= 0 \\ \frac{\partial s}{\partial a_1} = 0 \\ \vdots\end{cases}
+\end{align*}
+
+$$\begin{cases}
+\cancelto{n}{(\sum 1)} a_0 +( \sum x_i) a_1 + \cdots = \sum y_i \\
+(\sum x_i) a_0 + (\sum x_i^2) a_1 +\cdots= \sum x_i y_i \\
+\vdots
+\end{cases}$$
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌روش حداقل مربعات}$};
+\end{tikzpicture}
+
+
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+
+بدون در نظر گرفتن خطای گرد کردن، به جواب دقیق می‌رسیم.
+
+عملیات سطری مقدماتی:
+\begin{itemize}
+\item
+جابجایی سطر‌ها
+\item
+ضرب سطر در عدد غیر صفر
+\item
+جمع دو سطر با یکدیگر
+\end{itemize}
+
+\begin{tabular}{r r}
+جایگذاری پسرو & حل به کمک ماتریس بالا مثلثی \\
+جایگذاری پیشرو & حل به کمک ماتریس پایین مثلثی
+\end{tabular}
+
+{\large\underline{الگوریتم}}
+\begin{enumerate}
+\item محور‌گیری
+
+\begin{itemize}
+\item 
+با جابجایی سطر‌ها، همه اعداد بزرگ را روی قطر انتقال بده. 
+\item 
+سپس بالا مثلثی کن  (پسرو) یا پایین مثلثی کن (پیشرو). 
+
+\color{gray}\item
+{\color{gray} علت: کاهش خطای حاصل ضرب }
+
+\end{itemize}
+\item 
+انجام عملیات سطری مقدماتی روی ماتریس افزوده  
+$\begin{pmatrix}
+A | b
+\end{pmatrix}$
+
+\item
+
+تکرار ۲، تا رسیدن به بالامثلثی (پسرو) یا پایین مثلثی (پیشرو)
+\item
+برای انجام مرحله $i$-اُم، باید $a_{ii}^{(i)} \neq 0$. (عضو روی قطر، غیر صفر)
+\end{enumerate}
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌روش حذفی گاوس - مستقیم}$};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+به تقریب جواب می‌رسیم.
+
+\begin{enumerate}
+\item 
+از معادله $i$-اُم، $x_i$ را بدست می‌آوریم.
+($i.e.\,\,\, x_i = \cdots$)
+\item
+تقریب اولیه 
+$x^{(0)} = [x_1^{(0)}, x_2^{(0)}, x_3^{(0)}, \cdots]^t$
+را در نظر می‌گیریم.
+\item
+با جاگذاری تقریب ۲ در دستگاه ۱، یک تقریب جدید بدست می آید. (تکرار شود...)\
+\begin{align*}
+x_1^{(k+1)} = 1\big/a_{11}[b_1 - a_{12}x_2^{(k)} - a_{13}x_3^{(k)} -\cdots] \\
+x_2^{(k+1)} = 1\big/a_{22}[b_2 - a_{21}x_1^{(k)} - a_{23}x_3^{(k)} -\cdots] \\
+x_3^{(k+1)} = 1\big/a_{33}[b_3 - a_{31}x_1^{(k)} - a_{32}x_2^{(k)} -\cdots]
+\end{align*}
+\end{enumerate}
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{روش ژاکوبی - تکراری}$};
+\end{tikzpicture}
+
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+
+بدون در نظر گرفتن خطای گرد کردن، به جواب دقیق می‌رسیم.
+
+$$x = A^{-1} b$$
+
+\begin{itemize}
+\item
+اگر $b=0, |A| \neq 0$، آنگاه $x=0$
+\item
+اگر $|A|=0$، آنگاه دستگاه همگن $Ax=0$ جواب غیر صفر دارد.
+\end{itemize}
+
+
+\underline{محاسبه ماتریس وارون}
+
+ماتریس افزوده 
+$\begin{pmatrix}
+A | I
+\end{pmatrix}$
+را با عملیات سطری مقدماتی به 
+$\begin{pmatrix}
+I | A^{-1}
+\end{pmatrix}$
+تبدیل می‌کنیم.
+\\ \\
+\underline{rank}
+ابعاد بزرگترین زیرماتریس مربعی که دترمینان آن مخالف صفر باشد. (تعداد سطر‌های مستقل خطی)
+
+ماتریسی وارون پذیر است که $Order(A) = Rank(A)$
+\\ \\
+\underline{حل پذیری دستگاه}
+
+\begin{itemize}
+\item 
+اگر $Rank(A) \neq Rank (A|Y)$ دستگاه پاسخ ندارد
+\item
+اگر $Rank(A) = Rank(A|Y) = r$، دستگاه سازگار است
+\begin{itemize}
+\item
+$r<n$ : بی‌نهایت پاسخ از خانواده $n-r$ پارامتر
+\item $n=r$ : پاسخ یکتا
+\end{itemize}
+\end{itemize}
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{‌روش ماتریس وارون ضرایب  - مستقیم}$};
+\end{tikzpicture}
+
+
+
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.46\textwidth}
+    
+    	\begin{RTL}
+مثل ژاکوبی
+
+در هر مرحله، محورگیری انجام بده.
+
+تفاوت:
+
+هر مقدار جدید بدست آمده از مولفه‌های جواب، در محاسبه سایر مولفه‌ها بکار می‌رود.
+
+\begin{LTR}
+\begin{align*}
+x_1^{(k+1)} = 1\big/a_{11}[b_1 - a_{12}x_2^{(k)} - a_{13}x_3^{(k)} -\cdots] \\
+x_2^{(k+1)} = 1\big/a_{22}[b_2 - a_{21}x_1^{(k+1)} - a_{23}x_3^{(k)} -\cdots] \\
+x_3^{(k+1)} = 1\big/a_{33}[b_3 - a_{31}x_1^{(k+1)} - a_{32}x_2^{(k+1)} -\cdots]
+\end{align*}
+\end{LTR}
+
+گاوس-سایدل، سریعتر از ژاکوبی. (هیچکدام تضمین همگرایی ندارد)
+\\ \\
+اگر ماتریس $A$ (ضرایب)، اکیدا قطر غالب سطری/ستونی باشد، هر حدس اولیه از جواب‌ها برای ژاکوبی و گاوس-سایدل، همگراست
+
+
+	\end{RTL}
+	
+    \end{minipage}
+};
+%------------ Measures of Center Header ---------------------
+\node[fancytitle, left=10pt, rounded corners=4pt, draw=black,fill=white, text=black] at (box.north east) {$\text{روش گاوس-سایدل - تکراری}$};
+\end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+\begin{flushleft}
+\begin{tabular}{c  c}
+ \textbf{محاسبات عـــددی} & بهار ۱۴۰۲ \\
+ دکتر کیوان محمدی &  \raisebox{-.5\height}{\includegraphics[scale=0.1]{amin handwritten.ai}}
+\end{tabular}
+
+\end{flushleft}
+
+
+
+\end{multicols*}
+\end{document}
