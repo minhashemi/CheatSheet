@@ -11,9 +11,9 @@ The repository is organized by subject about Computer Science and Mechanical Eng
 | Subject Name | Description | Semester | Professor | Cheat Sheet Link | Status |
 |--------------|-------------|----------|-----------|------------------|--------|
 | Statistics   | CS Course   | Spring 2023 | Prof. Javad B. Ebrahimi | [Link](Statistics/) | Complete ✔️ |
-| Numerical Computations| ME Course   | Spring 2023 | Prof. Kaivan Mohammadi | [Link](Numerical Computations/) | Complete ✔️ |
-| Basic Programming (Python) | CS Course   | Spring 2022 | Prof. Alireza Aghamohammadi | [Link](Basic Programming (Python)/) | Complete ✔️ |
-| Calculus III & IV | CS Course   | Spring 2022 | Dr. Trefor Bazett | [Link](Calculus III & IV.pdf) | Complete ✔️ |
+| Numerical Computations| ME Course   | Spring 2023 | Prof. Kaivan Mohammadi | [Link](Numerical%20Computations/) | Complete ✔️ |
+| Basic Programming (Python) | CS Course   | Spring 2022 | Prof. Alireza Aghamohammadi | [Link](Basic%20Programming%20(Python)/) | Complete ✔️ |
+| Calculus III & IV | CS Course   | Spring 2022 | Dr. Trefor Bazett | [Link](Calculus%20III%20&%20IV.pdf) | Complete ✔️ |
 
 
 
