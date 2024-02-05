@@ -10,6 +10,7 @@ The repository is organized by subject about Computer Science and Mechanical Eng
 
 | Subject Name | Description | Semester | Professor | Cheat Sheet Link | Status |
 |--------------|-------------|----------|-----------|------------------|--------|
+| Data Structures   | CS Course   | Fall 2023 | Prof. Shahram Khazaei | [Link](DS__Notes.pdf) | Complete ✔️ |
 | Statistics   | CS Course   | Spring 2023 | Prof. Javad B. Ebrahimi | [Link](Statistics/) | Complete ✔️ |
 | Numerical Computations| ME Course   | Spring 2023 | Prof. Kaivan Mohammadi | [Link](Numerical%20Computations/) | Complete ✔️ |
 | Basic Programming (Python) | CS Course   | Spring 2022 | Prof. Alireza Aghamohammadi | [Link](Basic%20Programming%20(Python)/) | Complete ✔️ |
