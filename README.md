@@ -8,13 +8,13 @@ Feel free to explore the cheat sheets, and use them for non-commercial purposes 
 
 The repository is organized by subject about Computer Science and Mechanical Engineering Courses.
 
-| Subject Name | Description | Semester | Professor | Cheat Sheet Link | Status |
-|--------------|-------------|----------|-----------|------------------|--------|
-| Data Structures   | CS Course   | Fall 2023 | Prof. Shahram Khazaei | [Link](DS__Notes.pdf) | Complete ✔️ |
-| Statistics   | CS Course   | Spring 2023 | Prof. Javad B. Ebrahimi | [Link](Statistics/) | Complete ✔️ |
-| Numerical Computations| ME Course   | Spring 2023 | Prof. Kaivan Mohammadi | [Link](Numerical%20Computations/) | Complete ✔️ |
-| Basic Programming (Python) | CS Course   | Spring 2022 | Prof. Alireza Aghamohammadi | [Link](Basic%20Programming%20(Python)/) | Complete ✔️ |
-| Calculus III & IV | CS Course   | Spring 2022 | Dr. Trefor Bazett | [Link](Calculus%20III%20&%20IV.pdf) | Complete ✔️ |
+| Course Name | Semester | Professor | Cheat Sheet Link | Status |
+|--------------|----------|-----------|------------------|--------|
+| Data Structures  | Fall 2023 | Prof. Shahram Khazaei | [Link](DS__Notes.pdf) | Complete ✔️ |
+| Statistics   | Spring 2023 | Prof. Javad B. Ebrahimi | [Link](Statistics/) | Complete ✔️ |
+| Numerical Computations| Spring 2023 | Prof. Kaivan Mohammadi | [Link](Numerical%20Computations/) | Complete ✔️ |
+| Basic Programming (Python) | Spring 2022 | Prof. Alireza Aghamohammadi | [Link](Basic%20Programming%20(Python)/) | Complete ✔️ |
+| Calculus III & IV | Spring 2022 | Dr. Trefor Bazett | [Link](Calculus%20III%20&%20IV.pdf) | Complete ✔️ |
 
 
 
@@ -32,7 +32,7 @@ Make sure to review and adhere to the license terms before using or sharing the 
 
 If you have any questions, suggestions, or feedback, feel free to contact me:
 
-- Email: am.hashemi@pm.me 📧
+- Email: hi@minhashemi.me 📧
 - GitHub: [@minhashemi](https://github.com/minhashemi) 🐱
 
 Happy studying and using these cheat sheets for your educational journey! 🌟🎉
